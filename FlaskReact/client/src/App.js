@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState,useEffect} from 'react';
 
 function App() {
+
+  const [dataDisplay, setData] = useState([{}])
+
+  useEffect(() =>{
+    fetch("/home").then(
+      res => res.json()
+    ).then
+    (
+      dataDisplay => {
+        setData(dataDisplay)
+        console.log(dataDisplay)
+      }
+    )
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {(typeof dataDisplay.cards === 'undefined') ? (
+        <p>loading...</p>
+      ) : (
+        dataDisplay.cards.map ((cards,i) => (
+          <p key={i}>{cards}</p>
+        ))
+      )
+
+      }
     </div>
   );
 }
 
 export default App;
+
