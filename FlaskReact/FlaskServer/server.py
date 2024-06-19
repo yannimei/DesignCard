@@ -1,4 +1,6 @@
 from flask import Flask
+from openai import OpenAI
+
 
 app = Flask(__name__)
 
