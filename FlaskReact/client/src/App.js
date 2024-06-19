@@ -32,13 +32,21 @@ import React, {useState,useEffect} from 'react';
 // }
 
 function App() {
+  const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
 
-  const fetchAnswer = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch('/answer'); // Replace with your Flask server URL
-      const data = await response.text();
-      setAnswer(data);
+      const response = await fetch('/answer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: question.trim() }),
+      });
+      const data = await response.json();
+      setAnswer(data.answer);
     } catch (error) {
       console.error('Error fetching answer:', error);
     }
@@ -46,9 +54,20 @@ function App() {
 
   return (
     <div className="App">
-      <h1>what is deisgn card</h1>
-      <button onClick={fetchAnswer}>Fetch Answer</button>
-      <p>{answer}</p>
+      <h1>Ask a Question</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter your question:
+          <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+        </label>
+        <button type="submit">Get Answer</button>
+      </form>
+      {answer && (
+        <div>
+          <h2>Answer:</h2>
+          <p>{answer}</p>
+        </div>
+      )}
     </div>
   );
 }
