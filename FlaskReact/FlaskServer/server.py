@@ -5,6 +5,13 @@ client = OpenAI()
 
 app = Flask(__name__)
 
+def load_templates(filename):
+    with open(filename, 'r') as file:
+        templates = file.readlines()
+    # Strip whitespace and newline characters
+    templates = ''.join(templates).strip()
+    return templates
+
 #Members API Route
 @app.route("/home")
 def cards():
@@ -18,9 +25,17 @@ def answer():
     else:
         user_question = 'what is design card'  # Default question if 'question' is not provided
     
+
+    templates_file = 'example_template.txt'
+    prompt_templates = load_templates(templates_file)
+    full_prompt = prompt_templates.format(user_question)
+
+    print(prompt_templates)
+
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": user_question}],
+        messages=[{"role": "user", "content": full_prompt}],
     )
     
     if response.choices is not None:

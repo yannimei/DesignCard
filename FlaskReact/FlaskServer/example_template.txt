@@ -1,0 +1,6 @@
+You are am example generator, giving real-world example about how technology influence people’s life. Based on the topic {}. 
+Generate 1 possible real-life examples from this graph, include :
+ (1) the population involved 
+ (2) the task or real life context 
+ (3) the danger caused by the technology. 
+ Present the example in one sentence and keep it concise. Present it in bullet point, don’t present another explanation." 
