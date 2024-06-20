@@ -54,13 +54,21 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Ask a Question</h1>
+      <h1>Design Knowledge</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Enter your question:
-          <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+          You might have:
+          <textarea
+            value={question} 
+            onChange={(e) => setQuestion(e.target.value)} 
+            style={{
+            width: '300px',
+            height: '100px',
+            resize: 'vertical', // Allow vertical resizing
+            fontSize: '12px',   // Adjust font size if needed
+          }}></textarea>
         </label>
-        <button type="submit">Get Answer</button>
+        <button type="submit">Examplify</button>
       </form>
       {answer && (
         <div>
