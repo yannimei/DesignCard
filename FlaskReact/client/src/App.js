@@ -1,39 +1,10 @@
-import React, {useState,useEffect} from 'react';
-
-// function App() {
-
-//   const [dataDisplay, setData] = useState([{}])
-
-//   useEffect(() =>{
-//     fetch("/home").then(
-//       res => res.json()
-//     ).then
-//     (
-//       dataDisplay => {
-//         setData(dataDisplay)
-//         console.log(dataDisplay)
-//       }
-//     )
-//   }, [])
-
-//   return (
-//     <div>
-//       {(typeof dataDisplay.cards === 'undefined') ? (
-//         <p>loading...</p>
-//       ) : (
-//         dataDisplay.cards.map ((cards,i) => (
-//           <p key={i}>{cards}</p>
-//         ))
-//       )
-
-//       }
-//     </div>
-//   );
-// }
+import React, { useState } from 'react';
+import './App.css'; // Import the CSS file
 
 function App() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [buttonVisible, setButtonVisible] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,33 +23,45 @@ function App() {
     }
   };
 
+  const handleDoubleClick = () => {
+    setButtonVisible(true);
+  };
+
   return (
     <div className="App">
-      <h1>Design Knowledge</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          You might have:
-          <textarea
-            value={question} 
-            onChange={(e) => setQuestion(e.target.value)} 
-            style={{
-            width: '300px',
-            height: '100px',
-            resize: 'vertical', // Allow vertical resizing
-            fontSize: '12px',   // Adjust font size if needed
-          }}></textarea>
-        </label>
-        <button type="submit">Examplify</button>
-      </form>
-      {answer && (
-        <div>
-          <h2>Answer:</h2>
-          <p>{answer}</p>
-        </div>
-      )}
+      <div className="card">
+        <h1>Optimization Criteria</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="text-container">
+            <textarea
+              value={question} 
+              onChange={(e) => setQuestion(e.target.value)} 
+              onDoubleClick={handleDoubleClick}
+              style={{
+                width: '100%',
+                height: '100px',
+                resize: 'vertical', // Allow vertical resizing
+                fontSize: '12px',   // Adjust font size if needed
+                border: 'none',     // Make border invisible
+                outline: 'none',    // Remove outline on focus
+                padding: '10px',    // Add some padding for better appearance
+                boxSizing: 'border-box',
+              }}
+              className="text-common"
+            ></textarea>
+          </div>
+          {buttonVisible && (
+            <button type="submit">Examplify</button>
+          )}
+        </form>
+        {answer && (
+          <div>
+            <p className="text-common">{answer}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
 export default App;
-
