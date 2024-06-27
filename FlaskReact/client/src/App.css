@@ -38,36 +38,43 @@ button {
   background-color: #007BFF;
   color: #ffffff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 4px 8px;
+  border-radius: 2px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0,5em;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+form {
+  width: 100%;
+}
 
 .text-common {
   width: 100%;
   font-size: 12px;
-   font-family: Arial, sans-serif; /* Ensure the same font */
+  font-family: Arial, sans-serif; /* Ensure the same font */
   box-sizing: border-box;
   padding: 10px;
+  overflow: hidden; /* Hide scrollbar */
 }
+
 textarea {
   width: 100%;
-  border-radius: 4px;
-  padding: 10px;
+  height: auto; /* Allow the textarea to expand vertically */
+  min-height: 100px; /* Minimum height */
+  resize: none; /* Disable resizing */
   font-size: 1em;
   box-sizing: border-box;
+  border: none; /* Remove default textarea border */
+  outline: none; /* Remove default focus outline */
 }
+
 p {
   font-size: 1em;
 }
-
-
 
 h2 {
   margin-top: 1em;
