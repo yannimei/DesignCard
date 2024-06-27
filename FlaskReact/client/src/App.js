@@ -27,41 +27,58 @@ function App() {
     setButtonVisible(true);
   };
 
+
   return (
     <div className="App">
       <div className="card">
         <h1>Optimization Criteria</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="text-container">
+        {!answer ? (
+          <form onSubmit={handleSubmit}>
             <textarea
-              value={question} 
-              onChange={(e) => setQuestion(e.target.value)} 
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
               onDoubleClick={handleDoubleClick}
-              style={{
-                width: '100%',
-                height: '100px',
-                resize: 'vertical', // Allow vertical resizing
-                fontSize: '12px',   // Adjust font size if needed
-                border: 'none',     // Make border invisible
-                outline: 'none',    // Remove outline on focus
-                padding: '10px',    // Add some padding for better appearance
-                boxSizing: 'border-box',
-              }}
               className="text-common"
             ></textarea>
-          </div>
-          {buttonVisible && (
-            <button type="submit">Examplify</button>
-          )}
-        </form>
-        {answer && (
-          <div>
+            {buttonVisible && (
+              <button type="submit">Examplify</button>
+            )}
+          </form>
+        ) : (
+          <div className="text-container">
             <p className="text-common">{answer}</p>
           </div>
         )}
       </div>
     </div>
   );
+  
+  // return (
+  //   <div className="App">
+  //     <div className="card">
+  //       <h1>Optimization Criteria</h1>
+  //       <form onSubmit={handleSubmit}>
+  //           <textarea
+  //             value={question} 
+  //             onChange={(e) => setQuestion(e.target.value)} 
+  //             style={{
+  //               width: '100%',
+  //               height: '100px',
+  //               resize: 'vertical', // Allow vertical resizing
+  //               fontSize: '12px',   // Adjust font size if needed
+  //             }}
+  //           ></textarea>
+  //         <button type="submit">Examplify</button>
+  //       </form>
+  //       {answer && (
+  //         <div>
+  //           <h2>Answer:</h2>
+  //           <p>{answer}</p>
+  //         </div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default App;
